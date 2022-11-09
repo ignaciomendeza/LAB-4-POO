@@ -1,4 +1,5 @@
-import java.util.ArrayList;
+public class PorSiAcaso {
+    import java.util.ArrayList;
 
 /*
  * Oscar Flores, Ignacio Méndez y Ariela Mishaan
@@ -20,7 +21,6 @@ public class Radio implements InterfaceB{
     private ArrayList <ArrayList<Cancion>> listaListasReproduccion;
     private ArrayList <TarjetaPresentacion> listaTarjetasPresentacion;
     private boolean encendido;
-    private ArrayList<Float> listaEmisoras;
     private Cancion cancionActual;
     private Contacto ultimoContacto;
     private ArrayList <Cancion> listaReproduccionActual;
@@ -37,26 +37,26 @@ public class Radio implements InterfaceB{
         listaListasReproduccion = new ArrayList<ArrayList<Cancion>>();
         listaTarjetasPresentacion = new ArrayList<TarjetaPresentacion>();
         encendido = false;
-        listaEmisoras = new ArrayList<Float>();
         cancionActual = new Cancion();
         ultimoContacto = new Contacto();
         listaReproduccionActual = new ArrayList <Cancion>();
     }
 
-    public Radio(String banda, String frecuencia, float estacionActual, ArrayList<Contacto> listaContactos, int modo, int volumen, ArrayList<ArrayList<Cancion>> listaListasReproduccion, ArrayList<TarjetaPresentacion> listaTarjetasPresentacion, boolean encendido, ArrayList<Float> listaEmisoras, Cancion cancionActual, Contacto ultimoContacto, ArrayList<Cancion> listaReproduccionActual) {
-        this.banda = banda;
-        this.frecuencia = frecuencia;
-        this.estacionActual = estacionActual;
-        this.listaContactos = listaContactos;
-        this.modo = modo;
-        this.volumen = volumen;
-        this.listaListasReproduccion = listaListasReproduccion;
-        this.listaTarjetasPresentacion = listaTarjetasPresentacion;
-        this.encendido = encendido;
-        this.listaEmisoras = listaEmisoras;
-        this.cancionActual = cancionActual;
-        this.ultimoContacto = ultimoContacto;
-        this.listaReproduccionActual = listaReproduccionActual;
+    public Radio(String banda, String frecuencia, float estacionActual, ArrayList<Contacto> listaContactos, 
+        int modo, int volumen, ArrayList<ArrayList<Cancion>> listaListasReproduccion, ArrayList<TarjetaPresentacion> listaTarjetasPresentacion, 
+        boolean encendido, Cancion cancionActual, Contacto ultimoContacto, ArrayList<Cancion> listaReproduccionActual) {
+            this.banda = banda;
+            this.frecuencia = frecuencia;
+            this.estacionActual = estacionActual;
+            this.listaContactos = listaContactos;
+            this.modo = modo;
+            this.volumen = volumen;
+            this.listaListasReproduccion = listaListasReproduccion;
+            this.listaTarjetasPresentacion = listaTarjetasPresentacion;
+            this.encendido = encendido;
+            this.cancionActual = cancionActual;
+            this.ultimoContacto = ultimoContacto;
+            this.listaReproduccionActual = listaReproduccionActual;
     }
 
 
@@ -65,54 +65,24 @@ public class Radio implements InterfaceB{
     @Override
     public String cambiarVolumen(int subirBajar) {
         // TODO Auto-generated method stub
-        String resultado = "";
-        switch(subirBajar){
-            case 1:{
-                this.volumen = this.volumen + 1;
-                resultado = resultado + "Se ha subido el volumen.";
-            }
-            case 2:{
-                this.volumen = this.volumen - 1;
-                resultado = resultado + "Se ha bajado el volumen.";
-            }
-        }
-        return resultado + "\n" + this.toString();
+        return null;
     }
 
     @Override
     public String cambiarRadio() {
         // TODO Auto-generated method stub
-        String resultado = "";
-        if (this.banda.equalsIgnoreCase("FM")){
-            this.banda = "AM";
-            resultado = resultado + "Se ha cambiado a 'AM'.";
-        }
-
-        else if (this.banda.equalsIgnoreCase("AM")){
-            this.banda = "FM";
-            resultado = resultado + "Se ha cambiado a 'FM'.";
-        }
-        return resultado  + "\n" + this.toString();
+        return null;
     }
 
     @Override
     public String cambiarEmisora(int subirBajar) {
         // TODO Auto-generated method stub
-        switch(subirBajar){
-            case 1:{
-                this.estacionActual = (float) (this.estacionActual + 0.5);
-            }
-            case 2:{
-                this.estacionActual = (float) (this.estacionActual - 0.5);
-            }
-        }
-        return this.toString();
+        return null;
     }
 
     @Override
     public void guardarEmisora() {
         // TODO Auto-generated method stub
-        
         
     }
 
@@ -155,7 +125,7 @@ public class Radio implements InterfaceB{
     @Override
     public String escucharCancion(int cancion) {
         // TODO Auto-generated method stub
-
+        
         return null;
     }
 
@@ -164,6 +134,7 @@ public class Radio implements InterfaceB{
         // TODO Auto-generated method stub
         return null;
     }
+
 
     @Override
     public String desconectar() {
@@ -239,4 +210,6 @@ public class Radio implements InterfaceB{
         return resultado;
     }
     
+}
+
 }
