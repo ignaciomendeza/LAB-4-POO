@@ -15,7 +15,7 @@ public class Radio implements InterfaceB{
     private String frecuencia;
     private float estacionActual;
     private ArrayList<Contacto> listaContactos;
-    private String modo;
+    private int modo;
     private int volumen;
     private ArrayList <ArrayList<Cancion>> listaListasReproduccion;
     private ArrayList <TarjetaPresentacion> listaTarjetasPresentacion;
@@ -47,6 +47,8 @@ public class Radio implements InterfaceB{
         this.encendido = encendido;
     }
 
+
+    //métodos 
 
     @Override
     public String cambiarVolumen(int subirBajar) {
@@ -111,6 +113,7 @@ public class Radio implements InterfaceB{
     @Override
     public String escucharCancion(int cancion) {
         // TODO Auto-generated method stub
+
         return null;
     }
 
@@ -153,6 +156,11 @@ public class Radio implements InterfaceB{
     @Override
     public String desconectar() {
         // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public String toString(){
         return null;
     }
     
