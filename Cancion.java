@@ -94,12 +94,10 @@ public class Cancion {
      */
     @Override
     public String toString() {
-        return "{" +
-            " cantante='" + getCantante() + "'" +
-            ", duracion='" + getDuracion() + "'" +
-            ", nombre='" + getNombre() + "'" +
-            ", genero='" + getGenero() + "'" +
-            "}";
+        return "Cantante: " + getCantante() + "\n" +
+            "Duración: " + getDuracion() + "\n" +
+            "Nombre: " + getNombre() + "\n" +
+            "Género: " + getGenero() + "\n";
     }
     
 }
