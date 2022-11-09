@@ -30,4 +30,15 @@ public class Contacto {
     public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
+
+    //toString
+
+    @Override
+    public String toString() {
+        return "" +
+            "\nNombre: " + getNombre() + "\n" +
+            "Teléfono: " + getTelefono() + "\n" +
+            "";
+    }
+
 }
