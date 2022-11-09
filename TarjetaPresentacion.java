@@ -10,6 +10,10 @@ public class TarjetaPresentacion {
     //constructores
 
     public TarjetaPresentacion() {
+        nombre = "";
+        trabajo = "";
+        telefono = 0;
+        correo = "";
     }
 
     public TarjetaPresentacion(String nombre, String trabajo, int telefono, String correo) {
