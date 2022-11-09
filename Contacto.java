@@ -1,10 +1,18 @@
 public class Contacto {
-    
-    //atributos
     String nombre;
     int telefono;
 
-    //constructores 
+    
+    /** 
+     * @return String
+     */
+    @Override
+    public String toString() {
+        return "{" +
+            " nombre='" + getNombre() + "'" +
+            ", telefono='" + getTelefono() + "'" +
+            "}";
+    }
 
     public Contacto() {
     }
@@ -14,31 +22,35 @@ public class Contacto {
         this.telefono = telefono;
     }
 
-    //Sets y gets
+    
+    /** 
+     * @return String
+     */
     public String getNombre() {
         return this.nombre;
     }
 
+    
+    /** 
+     * @param nombre
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getTelefono() {
         return this.telefono;
     }
 
+    
+    /** 
+     * @param telefono
+     */
     public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
-
-    //toString
-
-    @Override
-    public String toString() {
-        return "" +
-            "\nNombre: " + getNombre() + "\n" +
-            "Teléfono: " + getTelefono() + "\n" +
-            "";
-    }
-
 }
