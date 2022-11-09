@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /*
  * Oscar Flores, Ignacio Méndez y Ariela Mishaan
  * POO Sección 40
@@ -7,6 +9,44 @@
  */
 
 public class Radio implements InterfaceB{
+
+    //atributos
+    private String banda;
+    private String frecuencia;
+    private float estacionActual;
+    private ArrayList<Contacto> listaContactos;
+    private String modo;
+    private int volumen;
+    private ArrayList <ArrayList<Cancion>> listaListasReproduccion;
+    private ArrayList <TarjetaPresentacion> listaTarjetasPresentacion;
+    private boolean encendido;
+
+    //constructores
+
+    public Radio() {
+        banda = "";
+        frecuencia = "";
+        estacionActual = 0;
+        listaContactos = new ArrayList<Contacto>();
+        modo = "";
+        volumen = 0;
+        listaListasReproduccion = new ArrayList<ArrayList<Cancion>>();
+        listaTarjetasPresentacion = new ArrayList<TarjetaPresentacion>();
+        encendido = false;
+    }
+
+    public Radio(String banda, String frecuencia, float estacionActual, ArrayList<Contacto> listaContactos, String modo, int volumen, ArrayList<ArrayList<Cancion>> listaListasReproduccion, ArrayList<TarjetaPresentacion> listaTarjetasPresentacion, boolean encendido) {
+        this.banda = banda;
+        this.frecuencia = frecuencia;
+        this.estacionActual = estacionActual;
+        this.listaContactos = listaContactos;
+        this.modo = modo;
+        this.volumen = volumen;
+        this.listaListasReproduccion = listaListasReproduccion;
+        this.listaTarjetasPresentacion = listaTarjetasPresentacion;
+        this.encendido = encendido;
+    }
+
 
     @Override
     public String cambiarVolumen(int subirBajar) {
