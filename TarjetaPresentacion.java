@@ -1,12 +1,16 @@
 public class TarjetaPresentacion {
-    
-    //atributos
     String nombre;
     String trabajo;
     int telefono;
     String correo;
 
-    //Sets y gets
+    public TarjetaPresentacion(String nombre, String trabajo, int telefono, String correo) {
+        this.nombre = nombre;
+        this.trabajo = trabajo;
+        this.telefono = telefono;
+        this.correo = correo;
+    }
+
     public String getNombre() {
         return this.nombre;
     }
