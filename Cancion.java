@@ -1,11 +1,13 @@
 public class Cancion {
     
-    
+    //atributos
     private String cantante;
     private float duracion;
     private String nombre;
     private String genero;
     
+    //atributos
+
     public Cancion() {
         this.cantante = "";
         this.duracion = 0;
@@ -20,7 +22,8 @@ public class Cancion {
         this.genero = genero;
     }
 
-    
+    //métodos
+
     /** 
      * @return String
      */
@@ -83,6 +86,8 @@ public class Cancion {
     public void setGenero(String genero) {
         this.genero = genero;
     }
+    
+    //toString
     
     /** 
      * @return String
