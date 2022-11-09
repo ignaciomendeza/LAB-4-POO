@@ -1,25 +1,15 @@
 public class TarjetaPresentacion {
     
-    String nombre;
-    String trabajo;
-    int telefono;
-    String correo;
+    //atributos
+
+    private String nombre;
+    private String trabajo;
+    private int telefono;
+    private String correo;
+
+    //constructores
 
     public TarjetaPresentacion() {
-    }
-
-    
-    /** 
-     * @return String
-     */
-    @Override
-    public String toString() {
-        return "{" +
-            " nombre='" + getNombre() + "'" +
-            ", trabajo='" + getTrabajo() + "'" +
-            ", telefono='" + getTelefono() + "'" +
-            ", correo='" + getCorreo() + "'" +
-            "}";
     }
 
     public TarjetaPresentacion(String nombre, String trabajo, int telefono, String correo) {
@@ -29,7 +19,8 @@ public class TarjetaPresentacion {
         this.correo = correo;
     }
 
-    
+    //sets y gets
+
     /** 
      * @return String
      */
@@ -93,6 +84,18 @@ public class TarjetaPresentacion {
         this.correo = correo;
     }
 
+     /** 
+     * @return String
+     */
+    @Override
+    public String toString() {
+        return "" +
+            "\nNombre: " + getNombre() + "\n" +
+            "Trabajo: " + getTrabajo() + "\n" +
+            "Teléfono: " + getTelefono() + "\n" +
+            "Correo: " + getCorreo() + "\n" +
+            "";
+    }
 
     
 }

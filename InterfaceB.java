@@ -1,3 +1,11 @@
+/*
+ * Oscar Flores, Ignacio Méndez y Ariela Mishaan
+ * POO Sección 40
+ * Laboratorio #4
+ * 11-11-2022
+ * Interface para el grupo B
+ */
+
 public interface InterfaceB{
     
     public String cambiarVolumen(int subirBajar);
