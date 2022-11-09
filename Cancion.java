@@ -1,24 +1,14 @@
 public class Cancion {
-    String cantante;
-    float duracion;
-    String nombre;
-    String genero;
-
+    private String cantante;
+    private float duracion;
+    private String nombre;
+    private String genero;
     
-    /** 
-     * @return String
-     */
-    @Override
-    public String toString() {
-        return "{" +
-            " cantante='" + getCantante() + "'" +
-            ", duracion='" + getDuracion() + "'" +
-            ", nombre='" + getNombre() + "'" +
-            ", genero='" + getGenero() + "'" +
-            "}";
-    }
-
     public Cancion() {
+        this.cantante = "";
+        this.duracion = 0;
+        this.nombre = "";
+        this.genero = "";
     }
 
     public Cancion(String cantante, float duracion, String nombre, String genero) {
@@ -51,7 +41,7 @@ public class Cancion {
     public float getDuracion() {
         return this.duracion;
     }
-
+    
     
     /** 
      * @param duracion
@@ -59,7 +49,7 @@ public class Cancion {
     public void setDuracion(float duracion) {
         this.duracion = duracion;
     }
-
+    
     
     /** 
      * @return String
@@ -75,7 +65,7 @@ public class Cancion {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
+    
     
     /** 
      * @return String
@@ -83,7 +73,7 @@ public class Cancion {
     public String getGenero() {
         return this.genero;
     }
-
+    
     
     /** 
      * @param genero
@@ -91,6 +81,18 @@ public class Cancion {
     public void setGenero(String genero) {
         this.genero = genero;
     }
-
+    
+    /** 
+     * @return String
+     */
+    @Override
+    public String toString() {
+        return "{" +
+            " cantante='" + getCantante() + "'" +
+            ", duracion='" + getDuracion() + "'" +
+            ", nombre='" + getNombre() + "'" +
+            ", genero='" + getGenero() + "'" +
+            "}";
+    }
     
 }
