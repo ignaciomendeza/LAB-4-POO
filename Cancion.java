@@ -1,9 +1,12 @@
 public class Cancion {
+    
+    //atributos
     String cantante;
     float duracion;
     String nombre;
     String genero;
 
+    //Sets y gets
     public String getCantante() {
         return this.cantante;
     }

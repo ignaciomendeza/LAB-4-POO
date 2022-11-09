@@ -1,7 +1,20 @@
 public class Contacto {
+    
+    //atributos
     String nombre;
     int telefono;
 
+    //constructores 
+
+    public Contacto() {
+    }
+
+    public Contacto(String nombre, int telefono) {
+        this.nombre = nombre;
+        this.telefono = telefono;
+    }
+
+    //Sets y gets
     public String getNombre() {
         return this.nombre;
     }

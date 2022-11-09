@@ -1,9 +1,12 @@
 public class TarjetaPresentacion {
+    
+    //atributos
     String nombre;
     String trabajo;
     int telefono;
     String correo;
 
+    //Sets y gets
     public String getNombre() {
         return this.nombre;
     }
