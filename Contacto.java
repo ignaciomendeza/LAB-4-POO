@@ -1,7 +1,20 @@
+/*
+ * Oscar Flores, Ignacio Méndez y Ariela Mishaan
+ * POO Sección 40
+ * Laboratorio #4
+ * 11-11-2022
+ * Clase que modela un contacto
+ */
+
 public class Contacto {
+    
+    //atributos 
+
     private String nombre;
     private int telefono;
     
+    //constructores
+
     public Contacto() {
         this.nombre = "";
         this.telefono = 0;
@@ -13,6 +26,8 @@ public class Contacto {
     }
     
     
+    //métodos, sets y gets
+
     /** 
      * @return String
      */
@@ -44,6 +59,7 @@ public class Contacto {
         this.telefono = telefono;
     }
     
+    //toString
     /** 
      * @return String
      */

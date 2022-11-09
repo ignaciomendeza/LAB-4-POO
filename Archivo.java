@@ -1,5 +1,5 @@
 /*
- * Ariela Mishaan (22052)
+ * Ariela Mishaan (22052), Ignacio Méndez (22613), Oscar Flores
  * POO Sección 40
  * Ejercicio #6
  * 28-10-2022

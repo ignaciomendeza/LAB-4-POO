@@ -1,6 +1,15 @@
+/*
+ * Oscar Flores, Ignacio Méndez y Ariela Mishaan
+ * POO Sección 40
+ * Laboratorio #4
+ * 11-11-2022
+ * Clase que modela una canción
+ */
+
 public class Cancion {
     
     //atributos
+    
     private String cantante;
     private float duracion;
     private String nombre;
