@@ -7,16 +7,6 @@ public class TarjetaPresentacion {
     public TarjetaPresentacion() {
     }
 
-    @Override
-    public String toString() {
-        return "{" +
-            " nombre='" + getNombre() + "'" +
-            ", trabajo='" + getTrabajo() + "'" +
-            ", telefono='" + getTelefono() + "'" +
-            ", correo='" + getCorreo() + "'" +
-            "}";
-    }
-
     public TarjetaPresentacion(String nombre, String trabajo, int telefono, String correo) {
         this.nombre = nombre;
         this.trabajo = trabajo;
@@ -56,6 +46,15 @@ public class TarjetaPresentacion {
         this.correo = correo;
     }
 
+    @Override
+    public String toString() {
+        return "{" +
+            "\nNombre: " + getNombre() + "\n" +
+            "Trabajo: " + getTrabajo() + "\n" +
+            "Telefono: " + getTelefono() + "'" +
+            "Correo: " + getCorreo() + "\n" +
+            "";
+    }
 
     
 }
