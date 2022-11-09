@@ -4,6 +4,19 @@ public class TarjetaPresentacion {
     int telefono;
     String correo;
 
+    public TarjetaPresentacion() {
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " nombre='" + getNombre() + "'" +
+            ", trabajo='" + getTrabajo() + "'" +
+            ", telefono='" + getTelefono() + "'" +
+            ", correo='" + getCorreo() + "'" +
+            "}";
+    }
+
     public TarjetaPresentacion(String nombre, String trabajo, int telefono, String correo) {
         this.nombre = nombre;
         this.trabajo = trabajo;
