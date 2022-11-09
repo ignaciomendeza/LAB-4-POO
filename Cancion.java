@@ -1,12 +1,22 @@
 public class Cancion {
-    
-    //atributos
     String cantante;
     float duracion;
     String nombre;
     String genero;
 
-    //constructores
+    
+    /** 
+     * @return String
+     */
+    @Override
+    public String toString() {
+        return "{" +
+            " cantante='" + getCantante() + "'" +
+            ", duracion='" + getDuracion() + "'" +
+            ", nombre='" + getNombre() + "'" +
+            ", genero='" + getGenero() + "'" +
+            "}";
+    }
 
     public Cancion() {
     }
@@ -18,53 +28,69 @@ public class Cancion {
         this.genero = genero;
     }
 
-
-    //Sets y gets
+    
+    /** 
+     * @return String
+     */
     public String getCantante() {
         return this.cantante;
     }
 
+    
+    /** 
+     * @param cantante
+     */
     public void setCantante(String cantante) {
         this.cantante = cantante;
     }
 
+    
+    /** 
+     * @return float
+     */
     public float getDuracion() {
         return this.duracion;
     }
 
+    
+    /** 
+     * @param duracion
+     */
     public void setDuracion(float duracion) {
         this.duracion = duracion;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getNombre() {
         return this.nombre;
     }
 
+    
+    /** 
+     * @param nombre
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getGenero() {
         return this.genero;
     }
 
+    
+    /** 
+     * @param genero
+     */
     public void setGenero(String genero) {
         this.genero = genero;
     }
 
-    //toString
-
-    @Override
-    public String toString() {
-        return "" +
-            "\nCantante: " + getCantante() + "\n" +
-            "Duración: '" + getDuracion() + "\n" +
-            "Nombre: " + getNombre() + "\n" +
-            "Género: " + getGenero() + "\n" +
-            "";
-    }
-
-
     
 }
-
