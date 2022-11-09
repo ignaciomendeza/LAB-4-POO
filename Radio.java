@@ -20,6 +20,7 @@ public class Radio implements InterfaceB{
     private ArrayList <ArrayList<Cancion>> listaListasReproduccion;
     private ArrayList <TarjetaPresentacion> listaTarjetasPresentacion;
     private boolean encendido;
+    private ArrayList<Float> listaEmisoras;
 
     //constructores
 
@@ -28,14 +29,15 @@ public class Radio implements InterfaceB{
         frecuencia = "";
         estacionActual = 0;
         listaContactos = new ArrayList<Contacto>();
-        modo = "";
+        modo = 0;
         volumen = 0;
         listaListasReproduccion = new ArrayList<ArrayList<Cancion>>();
         listaTarjetasPresentacion = new ArrayList<TarjetaPresentacion>();
         encendido = false;
+        listaEmisoras = new ArrayList<Float>();
     }
 
-    public Radio(String banda, String frecuencia, float estacionActual, ArrayList<Contacto> listaContactos, String modo, int volumen, ArrayList<ArrayList<Cancion>> listaListasReproduccion, ArrayList<TarjetaPresentacion> listaTarjetasPresentacion, boolean encendido) {
+    public Radio(String banda, String frecuencia, float estacionActual, ArrayList<Contacto> listaContactos, int modo, int volumen, ArrayList<ArrayList<Cancion>> listaListasReproduccion, ArrayList<TarjetaPresentacion> listaTarjetasPresentacion, boolean encendido, ArrayList<Float> listaEmisoras) {
         this.banda = banda;
         this.frecuencia = frecuencia;
         this.estacionActual = estacionActual;
@@ -45,6 +47,7 @@ public class Radio implements InterfaceB{
         this.listaListasReproduccion = listaListasReproduccion;
         this.listaTarjetasPresentacion = listaTarjetasPresentacion;
         this.encendido = encendido;
+        this.listaEmisoras = listaEmisoras;
     }
 
 
@@ -53,24 +56,54 @@ public class Radio implements InterfaceB{
     @Override
     public String cambiarVolumen(int subirBajar) {
         // TODO Auto-generated method stub
-        return null;
+        String resultado = "";
+        switch(subirBajar){
+            case 1:{
+                this.volumen = this.volumen + 1;
+                resultado = resultado + "Se ha subido el volumen.";
+            }
+            case 2:{
+                this.volumen = this.volumen - 1;
+                resultado = resultado + "Se ha bajado el volumen.";
+            }
+        }
+        return resultado + "\n" + this.toString();
     }
 
     @Override
     public String cambiarRadio() {
         // TODO Auto-generated method stub
-        return null;
+        String resultado = "";
+        if (this.banda.equalsIgnoreCase("FM")){
+            this.banda = "AM";
+            resultado = resultado + "Se ha cambiado a 'AM'.";
+        }
+
+        else if (this.banda.equalsIgnoreCase("AM")){
+            this.banda = "FM";
+            resultado = resultado + "Se ha cambiado a 'FM'.";
+        }
+        return resultado  + "\n" + this.toString();
     }
 
     @Override
     public String cambiarEmisora(int subirBajar) {
         // TODO Auto-generated method stub
-        return null;
+        switch(subirBajar){
+            case 1:{
+                this.estacionActual = (float) (this.estacionActual + 0.5);
+            }
+            case 2:{
+                this.estacionActual = (float) (this.estacionActual - 0.5);
+            }
+        }
+        return this.toString();
     }
 
     @Override
     public void guardarEmisora() {
         // TODO Auto-generated method stub
+        
         
     }
 
