@@ -125,22 +125,23 @@ public class Radio implements InterfaceB{
         // TODO Auto-generated method stub
         String resultado = "";
 
-        if(estacionActual <= 0.5){
-            resultado = "No se puede bajar más de emisora.";
-        }
-        else{
-            switch(subirBajar){
-                case 1:{
-                    this.estacionActual = (float) (this.estacionActual + 0.5);
-                    break;
-                }
-                case 2:{
-                    this.estacionActual = (float) (this.estacionActual - 0.5);
-                    break;
-                }
+        switch(subirBajar){
+            case 1:{
+                this.estacionActual = (float) (this.estacionActual + 0.5);
+                break;
             }
-            resultado = this.toString();
+            case 2:{
+                if(estacionActual <= 0.5){
+                    resultado = "No se puede bajar más de emisora.";
+                }
+                else{
+                    this.estacionActual = (float) (this.estacionActual - 0.5);
+                }
+                break;
+            }
         }
+        resultado = resultado + "\n" + this.toString();
+        
         return resultado;
     }
 
