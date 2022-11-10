@@ -179,7 +179,7 @@ public class Radio implements InterfaceB{
         if (this.listaEmisoras.size() != 0){
             for (int i = 0; i < listaEmisoras.size(); i++){
                 float actual = listaEmisoras.get(i);
-                resultado = resultado + "  - " + actual + "\n";
+                resultado = resultado + i + ") " + actual + "\n";
             }
         }
         else{
