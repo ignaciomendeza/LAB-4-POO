@@ -76,10 +76,12 @@ public class Radio implements InterfaceB{
             case 1:{
                 this.volumen = this.volumen + 1;
                 resultado = resultado + "Se ha subido el volumen.";
+                break;
             }
             case 2:{
                 this.volumen = this.volumen - 1;
                 resultado = resultado + "Se ha bajado el volumen.";
+                break;
             }
         }
         return resultado + "\n" + this.toString();
@@ -107,9 +109,11 @@ public class Radio implements InterfaceB{
         switch(subirBajar){
             case 1:{
                 this.estacionActual = (float) (this.estacionActual + 0.5);
+                break;
             }
             case 2:{
                 this.estacionActual = (float) (this.estacionActual - 0.5);
+                break;
             }
         }
         return this.toString();
@@ -118,44 +122,123 @@ public class Radio implements InterfaceB{
     @Override
     public void guardarEmisora() {
         // TODO Auto-generated method stub
-        
-        
+        this.listaEmisoras.add(estacionActual);
     }
 
     @Override
     public String cargarEmisora(int numeroEmisora) {
         // TODO Auto-generated method stub
-        return null;
+        this.estacionActual = listaEmisoras.get(numeroEmisora-1);
+        return "Sintonizando..." + "\n" + this.toString();
     }
 
     @Override
     public String desplegarEmisoras() {
         // TODO Auto-generated method stub
-        return null;
+        String resultado = "\n--- EMISORAS ---\n";
+
+        if (this.listaEmisoras.size() != 0){
+            for (int i = 0; i < listaEmisoras.size(); i++){
+                float actual = listaEmisoras.get(i);
+                resultado = resultado + "  - " + actual + "\n";
+            }
+        }
+        else{
+            resultado = resultado + "No ha guardado ninguna emisora.";
+        }
+        return resultado;
     }
 
     @Override
     public String desplegarListas() {
         // TODO Auto-generated method stub
-        return null;
+        String resultado = "";
+        if (this.listaListasReproduccion.size() != 0){
+            resultado = "\n--- LISTAS DE REPRODUCCIÓN ---\n";
+            for (int i = 0; i < listaListasReproduccion.size(); i++){
+                ArrayList<Cancion> actual = listaListasReproduccion.get(i);
+                resultado = resultado + "\nLista " + i + ":\n";
+                for (int j = 0; j < actual.size(); j++){
+                    Cancion actual2 = actual.get(j);
+                    resultado = resultado + "  - " + actual2.getNombre() + "\n";
+
+                }
+            }
+        }
+        else{
+            resultado = resultado + "No hay ningún teléfono conectado. Por favor conéctalo en el modo 'Teléfono'.";
+        }
+        return resultado + "\n" + this.toString();
     }
 
     @Override
     public String cambiarModo(int modo) {
         // TODO Auto-generated method stub
-        return null;
+        String resultado = "";
+        switch(modo){
+            case 1:{
+                this.modo = 1;
+                resultado = resultado + "Se ha cambiado al modo 'Radio'.";
+                break;
+            }
+            case 2:{
+                this.modo = 2;
+                resultado = resultado + "Se ha cambiado al modo 'Reproducción'.";
+                break;
+            }
+            case 3:{
+                this.modo = 3;
+                resultado = resultado + "Se ha cambiado al modo 'Teléfono'.";
+                break;
+            }
+            case 4:{
+                this.modo = 4;
+                resultado = resultado + "Se ha cambiado al modo 'Productividad'.";
+                break;
+            }
+        }
+        return resultado + "\n" + this.toString();
     }
 
     @Override
     public String seleccionarLista(int lista) {
         // TODO Auto-generated method stub
-        return null;
+        this.listaReproduccionActual = listaListasReproduccion.get(lista-1);
+        return "Se ha seleccionado la lista..." + "\n" + this.toString();
     }
 
     @Override
     public String cambiarCancion(int subirBajar) {
         // TODO Auto-generated method stub
-        return null;
+        int indice = 0;
+        String resultado = "";
+
+        for (int i = 0; i < listaReproduccionActual.size(); i++){
+            Cancion actual = listaReproduccionActual.get(i);
+            String nombreActual = actual.getNombre();
+            if (nombreActual.equalsIgnoreCase(this.cancionActual.getNombre())){
+                indice = i;
+            }
+        }
+
+        switch(subirBajar){
+            case 1:{
+                this.cancionActual = listaReproduccionActual.get(indice+1);
+                resultado = resultado + "Se ha cambiado de canción.";
+                break;
+            }
+            case 2:{
+                if (indice != 0){
+                    this.cancionActual = listaReproduccionActual.get(indice-1);
+                    resultado = resultado + "Se ha cambiado de canción.";
+                }
+                else{
+                    resultado = resultado + "No es posible regresar a la canción anterior porque esta es la primera canción de la lista de reproducción.";
+                }
+                break;
+            }
+        }
+        return resultado + "\n" + this.toString();
     }
 
     @Override
@@ -268,7 +351,7 @@ public class Radio implements InterfaceB{
             telefonoConectado = false;
             resultado = "\nSe ha desconectado el teléfono. Ya no hay contactos ni listas de presentación para mostrar.";
         }
-        return resultado;
+        return resultado + "\n" + this.toString();
     }
 
     @Override
@@ -288,7 +371,7 @@ public class Radio implements InterfaceB{
             }
         }
 
-        return resultado;
+        return resultado + "\n" + this.toString();
     }
 
     @Override
@@ -307,7 +390,7 @@ public class Radio implements InterfaceB{
                 i++;
             }
         }
-        return resultado;
+        return resultado + "\n" + this.toString();
     }
 
     @Override
@@ -349,7 +432,7 @@ public class Radio implements InterfaceB{
                     break;
             }
         }
-        return null;
+        return resultado + "\n" + this.toString();
     }
 
     @Override
@@ -368,7 +451,7 @@ public class Radio implements InterfaceB{
                 i++;
             }
         }
-        return resultado;
+        return resultado + "\n" + this.toString();
     }
 
     @Override
