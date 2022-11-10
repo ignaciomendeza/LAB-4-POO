@@ -33,7 +33,7 @@ public class Cancion {
 
     //métodos
 
-    /** 
+    /** Devuelve el nombre del cantante
      * @return String
      */
     public String getCantante() {
@@ -41,7 +41,7 @@ public class Cancion {
     }
 
     
-    /** 
+    /** Cambia el nombre del cantante
      * @param cantante
      */
     public void setCantante(String cantante) {
@@ -49,7 +49,7 @@ public class Cancion {
     }
 
     
-    /** 
+    /** Devuelve la duración de la canción
      * @return float
      */
     public float getDuracion() {
@@ -57,7 +57,7 @@ public class Cancion {
     }
     
     
-    /** 
+    /** Cambia la duración de la canción
      * @param duracion
      */
     public void setDuracion(float duracion) {
@@ -65,7 +65,7 @@ public class Cancion {
     }
     
     
-    /** 
+    /** Devuelve el nombre de la canción
      * @return String
      */
     public String getNombre() {
@@ -73,7 +73,7 @@ public class Cancion {
     }
 
     
-    /** 
+    /** Cambia el nombre de la canción
      * @param nombre
      */
     public void setNombre(String nombre) {
@@ -81,7 +81,7 @@ public class Cancion {
     }
     
     
-    /** 
+    /** Devuelve el género musical de la canción
      * @return String
      */
     public String getGenero() {
@@ -89,7 +89,7 @@ public class Cancion {
     }
     
     
-    /** 
+    /** Cambia el género musical de la canción
      * @param genero
      */
     public void setGenero(String genero) {
@@ -98,7 +98,7 @@ public class Cancion {
     
     //toString
     
-    /** 
+    /** Devuelve todos los atributos de la clase con sus respectivos valores
      * @return String
      */
     @Override

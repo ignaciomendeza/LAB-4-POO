@@ -28,7 +28,7 @@ public class Contacto {
     
     //métodos, sets y gets
 
-    /** 
+    /** Devuelve el nombre del contacto
      * @return String
      */
     public String getNombre() {
@@ -36,7 +36,7 @@ public class Contacto {
     }
 
     
-    /** 
+    /** Cambia el nombre del contacto
      * @param nombre
      */
     public void setNombre(String nombre) {
@@ -44,7 +44,7 @@ public class Contacto {
     }
     
     
-    /** 
+    /** Devuelve el número de teléfono del contacto
      * @return int
      */
     public int getTelefono() {
@@ -52,7 +52,7 @@ public class Contacto {
     }
     
     
-    /** 
+    /** Cambia el número de teléfono del contacto
      * @param telefono
      */
     public void setTelefono(int telefono) {
@@ -60,7 +60,8 @@ public class Contacto {
     }
     
     //toString
-    /** 
+
+    /** Devuelve todos los atributos de la clase con sus respectivos valores
      * @return String
      */
     @Override
