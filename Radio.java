@@ -68,6 +68,12 @@ public class Radio implements InterfaceB{
 
     //métodos 
 
+    /** 
+     * @param subirBajar
+     * @return String
+     * Sirve para subir y bajar el volumen. 
+     */
+
     @Override
     public String cambiarVolumen(int subirBajar) {
         // TODO Auto-generated method stub
@@ -87,6 +93,11 @@ public class Radio implements InterfaceB{
         return resultado + "\n" + this.toString();
     }
 
+    
+    /** 
+     * @return String
+     * Sirve para cambiar de FM a AM, cuando se está en el modo de radio
+     */
     @Override
     public String cambiarRadio() {
         // TODO Auto-generated method stub
@@ -103,28 +114,51 @@ public class Radio implements InterfaceB{
         return resultado  + "\n" + this.toString();
     }
 
+    
+    /** 
+     * @param subirBajar
+     * @return String
+     * Sirve para subir o bajar 0.5 de la emisora en la que se está
+     */
     @Override
     public String cambiarEmisora(int subirBajar) {
         // TODO Auto-generated method stub
-        switch(subirBajar){
-            case 1:{
-                this.estacionActual = (float) (this.estacionActual + 0.5);
-                break;
-            }
-            case 2:{
-                this.estacionActual = (float) (this.estacionActual - 0.5);
-                break;
-            }
+        String resultado = "";
+
+        if(estacionActual <= 0.5){
+            resultado = "No se puede bajar más de emisora.";
         }
-        return this.toString();
+        else{
+            switch(subirBajar){
+                case 1:{
+                    this.estacionActual = (float) (this.estacionActual + 0.5);
+                    break;
+                }
+                case 2:{
+                    this.estacionActual = (float) (this.estacionActual - 0.5);
+                    break;
+                }
+            }
+            resultado = this.toString();
+        }
+        return resultado;
     }
 
+    /**
+     * Sirve para guardar la emisora actual en la lista de emisoras favoritas.
+     */
     @Override
     public void guardarEmisora() {
         // TODO Auto-generated method stub
         this.listaEmisoras.add(estacionActual);
     }
 
+    
+    /** 
+     * @param numeroEmisora
+     * @return String
+     * Sirve para buscar una emisora y ponerla en el radio. 
+     */
     @Override
     public String cargarEmisora(int numeroEmisora) {
         // TODO Auto-generated method stub
@@ -132,6 +166,11 @@ public class Radio implements InterfaceB{
         return "Sintonizando..." + "\n" + this.toString();
     }
 
+    
+    /** 
+     * @return String
+     * Sirve para desplegar todas las emisoras que hay en la lista de emisoras favoritas.
+     */
     @Override
     public String desplegarEmisoras() {
         // TODO Auto-generated method stub
@@ -149,11 +188,17 @@ public class Radio implements InterfaceB{
         return resultado;
     }
 
+    
+    /** 
+     * @return String
+     * Sirve para desplegar todas las listas de reproducción del teléfono conectado
+     */
     @Override
     public String desplegarListas() {
         // TODO Auto-generated method stub
         String resultado = "";
         if (this.listaListasReproduccion.size() != 0){
+            
             resultado = "\n--- LISTAS DE REPRODUCCIÓN ---\n";
             for (int i = 0; i < listaListasReproduccion.size(); i++){
                 ArrayList<Cancion> actual = listaListasReproduccion.get(i);
@@ -171,6 +216,12 @@ public class Radio implements InterfaceB{
         return resultado + "\n" + this.toString();
     }
 
+    
+    /** 
+     * @param modo
+     * @return String
+     * Sirve para cambiar el modo del radio (radio, reproducción, teléfono o productividad)
+     */
     @Override
     public String cambiarModo(int modo) {
         // TODO Auto-generated method stub
@@ -200,6 +251,12 @@ public class Radio implements InterfaceB{
         return resultado + "\n" + this.toString();
     }
 
+    
+    /** 
+     * @param lista
+     * @return String
+     * Sirve para seleccionar una lista de reproducción y ponerla a reproducir.
+     */
     @Override
     public String seleccionarLista(int lista) {
         // TODO Auto-generated method stub
@@ -207,6 +264,12 @@ public class Radio implements InterfaceB{
         return "Se ha seleccionado la lista..." + "\n" + this.toString();
     }
 
+    
+    /** 
+     * @param subirBajar
+     * @return String
+     * Cuando se está reproduciendo una lista, este método sube o baja de canción. 
+     */
     @Override
     public String cambiarCancion(int subirBajar) {
         // TODO Auto-generated method stub
@@ -241,6 +304,12 @@ public class Radio implements InterfaceB{
         return resultado + "\n" + this.toString();
     }
 
+    
+    /** 
+     * @param cancion
+     * @return String
+     * Sirve para escuchar una canción específica de la lista de reproducción actual.
+     */
     @Override
     public String escucharCancion(int cancion) {
         // TODO Auto-generated method stub
@@ -253,6 +322,12 @@ public class Radio implements InterfaceB{
         return resultado;
     }
 
+    
+    /** 
+     * @param numeroTelefono
+     * @return String
+     * Sirve para conectar un teléfono (abre los archvos csv)
+     */
     @Override
     public String conectar(int numeroTelefono) {
         // TODO Auto-generated method stub
@@ -336,6 +411,11 @@ public class Radio implements InterfaceB{
         return resultado;
     }
 
+    
+    /** 
+     * @return String
+     * Sirve para desconectar el teléfono (vacía las listas)
+     */
     @Override
     public String desconectar() {
         // TODO Auto-generated method stub
@@ -354,6 +434,11 @@ public class Radio implements InterfaceB{
         return resultado + "\n" + this.toString();
     }
 
+    
+    /** 
+     * @return String
+     * Despliega todas las canciones de la lista que se está reproduciendo actualmente
+     */
     @Override
     public String desplegarCanciones() {
         // TODO Auto-generated method stub
@@ -374,6 +459,11 @@ public class Radio implements InterfaceB{
         return resultado + "\n" + this.toString();
     }
 
+    
+    /** 
+     * @return String
+     * Despliega todos los contactos del teléfono que está conectado.
+     */
     @Override
     public String desplegarContactos() {
         // TODO Auto-generated method stub
@@ -393,6 +483,11 @@ public class Radio implements InterfaceB{
         return resultado + "\n" + this.toString();
     }
 
+    
+    /** 
+     * @return String
+     * Enciende o apaga el radio, según el estado en el que se encuentre.
+     */
     @Override
     public String encenderApagar() {
         // TODO Auto-generated method stub
@@ -409,6 +504,13 @@ public class Radio implements InterfaceB{
         return resultado;
     }
 
+    
+    /** 
+     * @param opcion
+     * @param contacto
+     * @return String
+     * Llama a un contacto de la lista de contactos del teléfono que está conectado (o cuelga con él)
+     */
     @Override
     public String llamarColgar(int opcion, int contacto) {
         // TODO Auto-generated method stub
@@ -435,6 +537,11 @@ public class Radio implements InterfaceB{
         return resultado + "\n" + this.toString();
     }
 
+    
+    /** 
+     * @return String
+     * Despliega todas las tarjetas de presentación guardadas en el teléfono actualmenta conectado.
+     */
     @Override
     public String desplegarTarjetas() {
         // TODO Auto-generated method stub
@@ -454,6 +561,11 @@ public class Radio implements InterfaceB{
         return resultado + "\n" + this.toString();
     }
 
+    
+    /** 
+     * @return String
+     * Despliega la información importante del radio.
+     */
     @Override
     public String toString(){
         String resultado = "\n--------- RADIO ---------";
