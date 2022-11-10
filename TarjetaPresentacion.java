@@ -33,7 +33,7 @@ public class TarjetaPresentacion {
 
     //sets y gets
 
-    /** 
+    /** Devuelve el nombre del dueño del teléfono
      * @return String
      */
     public String getNombre() {
@@ -41,7 +41,7 @@ public class TarjetaPresentacion {
     }
 
     
-    /** 
+    /** Cambia el nombre del dueño del teléfono
      * @param nombre
      */
     public void setNombre(String nombre) {
@@ -49,7 +49,7 @@ public class TarjetaPresentacion {
     }
 
     
-    /** 
+    /** Devuelve el trabajo del dueño del teléfono
      * @return String
      */
     public String getTrabajo() {
@@ -57,7 +57,7 @@ public class TarjetaPresentacion {
     }
 
     
-    /** 
+    /** Cambia el trabajo del dueño del teléfono
      * @param trabajo
      */
     public void setTrabajo(String trabajo) {
@@ -65,7 +65,7 @@ public class TarjetaPresentacion {
     }
 
     
-    /** 
+    /** Devuelve el número teléfonico del celular conectado al radio
      * @return int
      */
     public int getTelefono() {
@@ -73,7 +73,7 @@ public class TarjetaPresentacion {
     }
 
     
-    /** 
+    /** Cambia el número teléfonico del celular conectado al radio
      * @param telefono
      */
     public void setTelefono(int telefono) {
@@ -81,7 +81,7 @@ public class TarjetaPresentacion {
     }
 
     
-    /** 
+    /** Devuelve el correo electrónico del dueño del teléfono
      * @return String
      */
     public String getCorreo() {
@@ -89,14 +89,16 @@ public class TarjetaPresentacion {
     }
 
     
-    /** 
+    /** Cambia el correo electrónico del dueño del teléfono
      * @param correo
      */
     public void setCorreo(String correo) {
         this.correo = correo;
     }
 
-     /** 
+    //toString
+
+    /** Devuelve todos los atributos de la clase con sus respectivos valores
      * @return String
      */
     @Override
