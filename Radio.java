@@ -24,6 +24,7 @@ public class Radio implements InterfaceB{
     private Cancion cancionActual;
     private Contacto ultimoContacto;
     private ArrayList <Cancion> listaReproduccionActual;
+    private boolean telefonoConectado;
 
     //constructores
 
@@ -41,22 +42,27 @@ public class Radio implements InterfaceB{
         cancionActual = new Cancion();
         ultimoContacto = new Contacto();
         listaReproduccionActual = new ArrayList <Cancion>();
+        telefonoConectado = false;
     }
 
-    public Radio(String banda, String frecuencia, float estacionActual, ArrayList<Contacto> listaContactos, int modo, int volumen, ArrayList<ArrayList<Cancion>> listaListasReproduccion, ArrayList<TarjetaPresentacion> listaTarjetasPresentacion, boolean encendido, ArrayList<Float> listaEmisoras, Cancion cancionActual, Contacto ultimoContacto, ArrayList<Cancion> listaReproduccionActual) {
-        this.banda = banda;
-        this.frecuencia = frecuencia;
-        this.estacionActual = estacionActual;
-        this.listaContactos = listaContactos;
-        this.modo = modo;
-        this.volumen = volumen;
-        this.listaListasReproduccion = listaListasReproduccion;
-        this.listaTarjetasPresentacion = listaTarjetasPresentacion;
-        this.encendido = encendido;
-        this.listaEmisoras = listaEmisoras;
-        this.cancionActual = cancionActual;
-        this.ultimoContacto = ultimoContacto;
-        this.listaReproduccionActual = listaReproduccionActual;
+    public Radio(String banda, String frecuencia, float estacionActual, ArrayList<Contacto> listaContactos, 
+        int modo, int volumen, ArrayList<ArrayList<Cancion>> listaListasReproduccion, ArrayList<TarjetaPresentacion> listaTarjetasPresentacion, 
+        boolean encendido, ArrayList<Float> listaEmisoras, Cancion cancionActual, Contacto ultimoContacto, ArrayList<Cancion> listaReproduccionActual,
+        boolean telefonoConectado) {
+            this.banda = banda;
+            this.frecuencia = frecuencia;
+            this.estacionActual = estacionActual;
+            this.listaContactos = listaContactos;
+            this.modo = modo;
+            this.volumen = volumen;
+            this.listaListasReproduccion = listaListasReproduccion;
+            this.listaTarjetasPresentacion = listaTarjetasPresentacion;
+            this.encendido = encendido;
+            this.listaEmisoras = listaEmisoras;
+            this.cancionActual = cancionActual;
+            this.ultimoContacto = ultimoContacto;
+            this.listaReproduccionActual = listaReproduccionActual;
+            this.telefonoConectado = telefonoConectado;
     }
 
 
@@ -155,50 +161,214 @@ public class Radio implements InterfaceB{
     @Override
     public String escucharCancion(int cancion) {
         // TODO Auto-generated method stub
+        String resultado = "";
 
-        return null;
+        cancionActual = listaReproduccionActual.get(cancion-1);
+        resultado = "\nSe ha puesto la canción " + cancionActual.getNombre();
+        resultado = resultado + "\n" + this.toString();
+
+        return resultado;
     }
 
     @Override
     public String conectar(int numeroTelefono) {
         // TODO Auto-generated method stub
-        return null;
+        
+        listaTarjetasPresentacion = new ArrayList<TarjetaPresentacion>();
+        listaContactos = new ArrayList<Contacto>();
+        listaListasReproduccion = new ArrayList<ArrayList<Cancion>>();
+
+        //Archivo de tarjetas de presentación
+        Archivo archivoTarjetasPresentacion = new Archivo("./tarjetasPresentacion" + numeroTelefono + ".csv");
+        ArrayList<String>lineasTarjetas = archivoTarjetasPresentacion.leerArchivo();
+        String [] tarjetaString = new String [4];
+
+        for (String linea : lineasTarjetas) {
+            
+            tarjetaString = linea.split(",");
+            String nombre = tarjetaString[0];
+            String trabajo = tarjetaString[1];
+            int telefono = Integer.valueOf(tarjetaString[2]);
+            String correo = tarjetaString[3];
+
+            TarjetaPresentacion tarjetaPresentacion = new TarjetaPresentacion(nombre, trabajo, telefono, correo);
+            listaTarjetasPresentacion.add(tarjetaPresentacion);
+        }
+
+        //Archivo de contactos
+        Archivo archivoContactos = new Archivo("./contactos" + numeroTelefono + ".csv");
+        ArrayList<String> lineasContactos = archivoContactos.leerArchivo();
+        String[] contactoString = new String[2];
+
+        for (String linea : lineasContactos) {
+            
+            contactoString = linea.split(",");
+            String nombre = contactoString[0];
+            int telefono = Integer.valueOf(contactoString[1]);
+
+            Contacto contacto = new Contacto(nombre, telefono);
+            listaContactos.add(contacto);
+        }
+
+        //Archivo de canciones 1 
+        Archivo archivoCanciones1 = new Archivo("./canciones" + numeroTelefono + "_1.csv");
+        ArrayList<Cancion> playList1 = new ArrayList<Cancion>();
+        ArrayList<String> lineasCanciones1 = archivoCanciones1.leerArchivo();
+        String[] cancionString = new String[2];
+
+        for (String linea : lineasCanciones1) {
+            
+            cancionString = linea.split(",");
+            String cantante = cancionString[0];
+            float duracion = Float.valueOf(cancionString[1]);
+            String nombre = cancionString[2];
+            String genero = cancionString[3];
+
+            Cancion cancion = new Cancion(cantante, duracion, nombre, genero);
+            playList1.add(cancion);
+        }
+        listaListasReproduccion.add(playList1);
+
+        //Archivo de canciones 2
+        Archivo archivoCanciones2 = new Archivo("./canciones" + numeroTelefono + "_2.csv");
+        ArrayList<Cancion> playList2 = new ArrayList<Cancion>();
+        ArrayList<String> lineasCanciones2 = archivoCanciones2.leerArchivo();
+        String[] cancionString2 = new String[2];
+
+        for (String linea : lineasCanciones2) {
+            
+            cancionString2 = linea.split(",");
+            String cantante = cancionString2[0];
+            float duracion = Float.valueOf(cancionString2[1]);
+            String nombre = cancionString2[2];
+            String genero = cancionString2[3];
+
+            Cancion cancion = new Cancion(cantante, duracion, nombre, genero);
+            playList2.add(cancion);
+        }
+        listaListasReproduccion.add(playList2);
+        
+        telefonoConectado = true;
+        String resultado = "\nSe ha conectado el teléfono.";
+        return resultado;
     }
 
     @Override
     public String desconectar() {
         // TODO Auto-generated method stub
-        return null;
+        String resultado = "";
+        
+        if(telefonoConectado == false){
+            resultado = "\nNo hay ningún teléfono conectado, no se puede desconectar.";
+        }
+        else{
+            listaTarjetasPresentacion = new ArrayList<TarjetaPresentacion>();
+            listaContactos = new ArrayList<Contacto>();
+    
+            telefonoConectado = false;
+            resultado = "\nSe ha desconectado el teléfono. Ya no hay contactos ni listas de presentación para mostrar.";
+        }
+        return resultado;
     }
 
     @Override
     public String desplegarCanciones() {
         // TODO Auto-generated method stub
-        return null;
+        String resultado = "";
+        
+        if(listaReproduccionActual.size() == 0){
+            resultado = "\nNo se está reproduciendo ninguna lista o no hay canciones en ella.";
+        }
+        else{
+            int i = 1;
+            resultado = "\n--- CANCIONES ---\n";
+            for (Cancion cancion : listaReproduccionActual) {
+                resultado = resultado + i + ". " + cancion.getNombre() + " - " + cancion.getCantante();
+                i++;
+            }
+        }
+
+        return resultado;
     }
 
     @Override
     public String desplegarContactos() {
         // TODO Auto-generated method stub
-        return null;
+        String resultado = "";
+
+        if(telefonoConectado = false){
+            resultado = "\nNo hay ningún teléfono conectado. No se pueden mostrar contactos.";
+        }
+        else{
+            int i = 0;
+            resultado = "\n--- CONTACTOS ---\n";
+            for (Contacto contacto : listaContactos) {
+                resultado = resultado + i + ". " + contacto.getNombre() + ": " + contacto.getTelefono();
+                i++;
+            }
+        }
+        return resultado;
     }
 
     @Override
     public String encenderApagar() {
         // TODO Auto-generated method stub
-        return null;
+        String resultado = "";
+
+        if(encendido == true){
+            encendido = false;
+            resultado = "\nSe ha apagado el radio.";
+        }
+        if(encendido == false){
+            encendido = true;
+            resultado = "\nSe ha encendido el radio.";
+        }
+        return resultado;
     }
 
     @Override
     public String llamarColgar(int opcion, int contacto) {
         // TODO Auto-generated method stub
+        String resultado = "";
+
+        if(telefonoConectado == false){
+            resultado = "\nNo hay ningún teléfono conectado. No se puede realizar una llamada.";
+        }
+        else{
+            Contacto contactoActual = listaContactos.get(contacto);
+            switch (opcion) {
+                case 1://llamar
+                    resultado = "\nLlamando a " + contactoActual.getTelefono() + " (" + contactoActual.getNombre() + ")" + "...";
+                    break;
+
+                case 2://colgar
+                    resultado = "\nSe ha colgado la llamada con " + contactoActual.getTelefono() + " (" + contactoActual.getNombre() + ")" + "...";
+                    break;
+            
+                default:
+                    break;
+            }
+        }
         return null;
     }
 
     @Override
     public String desplegarTarjetas() {
         // TODO Auto-generated method stub
-        return null;
+        String resultado = "";
+
+        if(telefonoConectado == false){
+            resultado = "\nNo hay ningún teléfono conectado. No se pueden mostrar las tarjetas de presentación.";
+        }
+        else{
+            int i = 0;
+            resultado = "\n--- TARJETAS DE PRESENTACIÓN ---\n";
+            for (TarjetaPresentacion tarjeta : listaTarjetasPresentacion) {
+                resultado = resultado + i + ". " + tarjeta.toString();
+                i++;
+            }
+        }
+        return resultado;
     }
 
     @Override
