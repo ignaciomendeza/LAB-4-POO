@@ -30,7 +30,7 @@ public class Radio implements InterfaceB{
 
     public Radio() {
         banda = "";
-        frecuencia = "";
+        frecuencia = "90 megahercios";
         estacionActual = 0;
         listaContactos = new ArrayList<Contacto>();
         modo = 0;
