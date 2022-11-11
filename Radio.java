@@ -474,10 +474,10 @@ public class Radio implements InterfaceB{
             resultado = "\nNo hay ningún teléfono conectado. No se pueden mostrar contactos.";
         }
         else{
-            int i = 0;
+            int i = 1;
             resultado = "\n--- CONTACTOS ---\n";
             for (Contacto contacto : listaContactos) {
-                resultado = resultado + i + ". " + contacto.getNombre() + ": " + contacto.getTelefono();
+                resultado = resultado + i + ". " + contacto.getNombre() + ": " + contacto.getTelefono() + "\n";
                 i++;
             }
         }
@@ -596,7 +596,7 @@ public class Radio implements InterfaceB{
             case 4:
                 resultado = resultado  + "\nMODO PRODUCTIVIDAD" + 
                     "\nVolumen: " + volumen + 
-                    "\nMi Tarjeta de presentación: " + listaTarjetasPresentacion.get(0).toString();
+                    "\nMi Tarjeta de presentación: " + "\n" + listaTarjetasPresentacion.get(0).toString();
                 break;
         
             default:
