@@ -17,7 +17,11 @@ public class Principal{
 
         Radio radio = new Radio();
         Scanner teclado = new Scanner(System.in);
+        int opcionContacto = 0;
         int modo = 1;
+        boolean conectado = false;
+        boolean finalizado = false;
+        
         boolean continuar = true;
 
         String menu = "\n======== RADIO ========\n1. Cambiar volumen\n2. Modo Radio\n3. Modo Reproducción\n4. Modo Teléfono\n5. Modo Productividad\n6.Apagar radio";
@@ -63,9 +67,10 @@ public class Principal{
                             break;
     
                         case 2: //Modo Radio
-                            radio.cambiarModo(1);
+                            modo = 1;
+                            System.out.println(radio.cambiarModo(1));
                             while (modo == 2) {
-                                String menuRadio = "\n--- MODO RADIO ---\n1. Cambiar de FM a AM\n2. Cambiar Emisora\n3. Guardar emisora actual\n4. Cargar emisora\n5. Cambiar de Modo\nEscoja una opción: ";
+                                System.out.println("\n--- MODO RADIO ---\n1. Cambiar de FM a AM\n2. Cambiar Emisora\n3. Guardar emisora actual\n4. Cargar emisora\n5. Cambiar de Modo\nEscoja una opción: ");
                                 int opcionRadio = teclado.nextInt();
     
                                 switch (opcionRadio) {
@@ -132,9 +137,10 @@ public class Principal{
                             break; 
                         
                         case 3: //Modo Reproducción
-                            radio.cambiarModo(2);
-                            while(modo ==3){
-                                String menuReproduccion = "\n--- MODO REPRODUCCIÓN ---\n1. Seleccionar lista de reproducción\n2. Cambiar Canción\n3. Escuchar canción\n4. Cambiar de modo\nEscoja una opción: ";
+                            System.out.println(radio.cambiarModo(2));
+                            modo = 2;
+                            while(modo ==2){
+                                System.out.println("\n--- MODO REPRODUCCIÓN ---\n1. Seleccionar lista de reproducción\n2. Cambiar Canción\n3. Escuchar canción\n4. Cambiar de modo\nEscoja una opción: ");
                                 int opcionReproduccion = teclado.nextInt();
 
                                 switch (opcionReproduccion) {
@@ -181,7 +187,7 @@ public class Principal{
 
                                     case 3://Escuchar canción
                                         
-                                    System.out.println(radio.desplegarCanciones());
+                                        System.out.println(radio.desplegarCanciones());
                                         
                                         try {
                                             System.out.println("\nEscoja una opción: ");
@@ -207,11 +213,86 @@ public class Principal{
                             break;
     
                         case 4: //Modo Teléfono
-                            
+                            System.out.println(radio.cambiarModo(3));
+                            modo = 3;
+                            while(modo ==3){
+                                
+                                System.out.println("\n--- MODO TELÉFONO ---\n1. Conectar o desconectar un teléfono");
+                                int opcionTelefono = teclado.nextInt();
+
+                                switch (opcionTelefono) {
+                                    case 1: //Conectar/desconectar teléfono
+
+                                        if (conectado){
+                                            System.out.println(radio.desconectar());
+                                        }
+
+                                        else{
+                                            System.out.println("\nTeléfonos cercanos: \n1. Teléfono de Ariela\n2. Teléfono de Ignacio\n3. Teléfono de Oscar\nEscoja una opción:");
+                                            int telefonoEscoger = teclado.nextInt();
+                                            teclado.nextLine();
+    
+                                            try {
+                                                System.out.println(radio.conectar(telefonoEscoger));
+    
+                                            } catch (Exception e) {
+                                                // TODO: handle exception
+                                                System.out.println("\nEscoja una opción válida.");
+                                            }
+                                            
+                                        }
+                                        
+                                        break;
+
+                                    case 2: //mostrar contactos
+                                        System.out.println(radio.desplegarContactos());
+                                        break;
+
+                                    case 3://llamar a contacto
+                                        System.out.println(radio.desplegarContactos()); 
+                                        
+                                        try {
+                                            System.out.println("\nEscoja una opción: ");
+                                            opcionContacto = teclado.nextInt();
+                                            System.out.println(radio.llamarColgar(1, opcionContacto));
+                                            finalizado = false;
+
+                                        } catch (Exception e) {
+                                            // TODO: handle exception
+                                            System.out.println("\nEscoja una opción válida.");
+                                        }
+                                        break;
+
+                                    case 4: //finalizar llamada
+
+                                        if (finalizado) {
+                                            System.out.println("\nNo hay llamada activa, no se puede colgar.");
+                                        } 
+                                        if (opcionContacto != 0) {
+                                            System.out.println(radio.llamarColgar(2,opcionContacto));
+                                        }
+                                        break;
+
+                                    case 5: //llamar al último contacto con el que se habló
+                                        System.out.println(radio.llamarColgar(1, opcionContacto));
+                                        
+                                        break;
+
+                                    case 6://Cambiar de modo
+                                        modo = 0;
+                                        break;
+                                
+                                    default:
+                                        System.out.println("Escoja una opción correcta.");
+                                        break;
+                                }
+                            }
                             break;
                         
                         case 5: //Modo productividad
-                            
+                            System.out.println(radio.cambiarModo(4));
+                            System.out.println(radio.desplegarTarjetas());
+                            modo = 0;
                             break;
                         
                         case 6: //Apagar radio
