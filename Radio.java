@@ -29,9 +29,9 @@ public class Radio implements InterfaceB{
     //constructores
 
     public Radio() {
-        banda = "";
+        banda = "FM";
         frecuencia = "90 megahercios";
-        estacionActual = 0;
+        estacionActual = (float)0.5;
         listaContactos = new ArrayList<Contacto>();
         modo = 0;
         volumen = 0;
@@ -104,12 +104,12 @@ public class Radio implements InterfaceB{
         String resultado = "";
         if (this.banda.equalsIgnoreCase("FM")){
             this.banda = "AM";
-            resultado = resultado + "Se ha cambiado a 'AM'.";
+            resultado = resultado + "\nSe ha cambiado a 'AM'.";
         }
 
         else if (this.banda.equalsIgnoreCase("AM")){
             this.banda = "FM";
-            resultado = resultado + "Se ha cambiado a 'FM'.";
+            resultado = resultado + "\nSe ha cambiado a 'FM'.";
         }
         return resultado  + "\n" + this.toString();
     }
@@ -212,7 +212,7 @@ public class Radio implements InterfaceB{
             }
         }
         else{
-            resultado = resultado + "No hay ningún teléfono conectado. Por favor conéctalo en el modo 'Teléfono'.";
+            resultado = resultado + "\nNo hay ningún teléfono conectado. Por favor conéctalo en el modo 'Teléfono'.";
         }
         return resultado + "\n" + this.toString();
     }
@@ -525,6 +525,7 @@ public class Radio implements InterfaceB{
             switch (opcion) {
                 case 1://llamar
                     resultado = "\nLlamando a " + contactoActual.getTelefono() + " (" + contactoActual.getNombre() + ")" + "...";
+                    ultimoContacto = contactoActual;
                     break;
 
                 case 2://colgar
@@ -583,7 +584,7 @@ public class Radio implements InterfaceB{
             case 2:
                 resultado = resultado  + "\nMODO REPRODUCCIÓN" + 
                     "\nVolumen: " + volumen + 
-                    "\nCanción que se está reproduciendo: " + cancionActual.toString();
+                    "\nCanción que se está reproduciendo: " + "\n" + cancionActual.toString();
                 break;
 
             case 3:
