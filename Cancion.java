@@ -11,7 +11,7 @@ public class Cancion {
     //atributos
     
     private String cantante;
-    private float duracion;
+    private String duracion;
     private String nombre;
     private String genero;
     
@@ -19,12 +19,12 @@ public class Cancion {
 
     public Cancion() {
         this.cantante = "";
-        this.duracion = 0;
+        this.duracion = "";
         this.nombre = "";
         this.genero = "";
     }
 
-    public Cancion(String cantante, float duracion, String nombre, String genero) {
+    public Cancion(String cantante, String duracion, String nombre, String genero) {
         this.cantante = cantante;
         this.duracion = duracion;
         this.nombre = nombre;
@@ -52,7 +52,7 @@ public class Cancion {
     /** Devuelve la duración de la canción
      * @return float
      */
-    public float getDuracion() {
+    public String getDuracion() {
         return this.duracion;
     }
     
@@ -60,7 +60,7 @@ public class Cancion {
     /** Cambia la duración de la canción
      * @param duracion
      */
-    public void setDuracion(float duracion) {
+    public void setDuracion(String duracion) {
         this.duracion = duracion;
     }
     

@@ -14,17 +14,18 @@ public interface InterfaceB{
     public void guardarEmisora();
     public String cargarEmisora(int numeroEmisora);
     public String desplegarEmisoras();
-    public String desplegarListas();
+    public String desplegarListas(String archivo);
     public String cambiarModo(int modo);
     public String seleccionarLista(int lista);
     public String cambiarCancion(int subirBajar);
     public String escucharCancion(int cancion);
     public String conectar(int numeroTelefono);
     public String desplegarCanciones();
-    public String desplegarContactos();
+    public String desplegarContactos(String archivo);
     public String encenderApagar();
     public String llamarColgar(int opcion, int contacto);
     public String desplegarTarjetas();
     public String desconectar();
     public String toString();
+    public boolean verificar(int numero);
 }

@@ -175,16 +175,17 @@ public class Radio implements InterfaceB{
     @Override
     public String desplegarEmisoras() {
         // TODO Auto-generated method stub
-        String resultado = "\n--- EMISORAS ---\n";
+        String resultado = "";
 
         if (this.listaEmisoras.size() != 0){
+            resultado = resultado + "\n--- EMISORAS ---\n";
             for (int i = 0; i < listaEmisoras.size(); i++){
                 float actual = listaEmisoras.get(i);
-                resultado = resultado + i + ") " + actual + "\n";
+                resultado = resultado + (i+1) + ") " + actual + "\n";
             }
         }
         else{
-            resultado = resultado + "No ha guardado ninguna emisora.";
+            resultado = resultado + "\nNo ha guardado ninguna emisora.";
         }
         return resultado;
     }
@@ -195,7 +196,7 @@ public class Radio implements InterfaceB{
      * Sirve para desplegar todas las listas de reproducción del teléfono conectado
      */
     @Override
-    public String desplegarListas() {
+    public String desplegarListas(String archivo) {
         // TODO Auto-generated method stub
         String resultado = "";
         if (this.listaListasReproduccion.size() != 0){
@@ -203,7 +204,7 @@ public class Radio implements InterfaceB{
             resultado = "\n--- LISTAS DE REPRODUCCIÓN ---\n";
             for (int i = 0; i < listaListasReproduccion.size(); i++){
                 ArrayList<Cancion> actual = listaListasReproduccion.get(i);
-                resultado = resultado + "\nLista " + i + ":\n";
+                resultado = resultado + "\nLista " + (i+1) + ":\n";
                 for (int j = 0; j < actual.size(); j++){
                     Cancion actual2 = actual.get(j);
                     resultado = resultado + "  - " + actual2.getNombre() + "\n";
@@ -228,28 +229,28 @@ public class Radio implements InterfaceB{
         // TODO Auto-generated method stub
         String resultado = "";
         switch(modo){
-            case 1:{
-                this.modo = 1;
+            case 1:{ //Radio
+                this.modo = 1; 
                 resultado = resultado + "Se ha cambiado al modo 'Radio'.";
                 break;
             }
-            case 2:{
+            case 2:{//Reproducción
                 this.modo = 2;
                 resultado = resultado + "Se ha cambiado al modo 'Reproducción'.";
                 break;
             }
-            case 3:{
+            case 3:{ //Teléfono
                 this.modo = 3;
                 resultado = resultado + "Se ha cambiado al modo 'Teléfono'.";
                 break;
             }
-            case 4:{
+            case 4:{ //Productividad
                 this.modo = 4;
                 resultado = resultado + "Se ha cambiado al modo 'Productividad'.";
                 break;
             }
         }
-        return resultado + "\n" + this.toString();
+        return resultado + "\n";
     }
 
     
@@ -379,7 +380,7 @@ public class Radio implements InterfaceB{
             
             cancionString = linea.split(",");
             String cantante = cancionString[0];
-            float duracion = Float.valueOf(cancionString[1]);
+            String duracion = cancionString[1];
             String nombre = cancionString[2];
             String genero = cancionString[3];
 
@@ -398,7 +399,7 @@ public class Radio implements InterfaceB{
             
             cancionString2 = linea.split(",");
             String cantante = cancionString2[0];
-            float duracion = Float.valueOf(cancionString2[1]);
+            String duracion = cancionString2[1];
             String nombre = cancionString2[2];
             String genero = cancionString2[3];
 
@@ -452,7 +453,7 @@ public class Radio implements InterfaceB{
             int i = 1;
             resultado = "\n--- CANCIONES ---\n";
             for (Cancion cancion : listaReproduccionActual) {
-                resultado = resultado + i + ". " + cancion.getNombre() + " - " + cancion.getCantante();
+                resultado = resultado + i + ". " + cancion.getNombre() + " - " + cancion.getCantante() + "\n";
                 i++;
             }
         }
@@ -466,7 +467,7 @@ public class Radio implements InterfaceB{
      * Despliega todos los contactos del teléfono que está conectado.
      */
     @Override
-    public String desplegarContactos() {
+    public String desplegarContactos(String archivo) {
         // TODO Auto-generated method stub
         String resultado = "";
 
@@ -595,14 +596,43 @@ public class Radio implements InterfaceB{
 
             case 4:
                 resultado = resultado  + "\nMODO PRODUCTIVIDAD" + 
-                    "\nVolumen: " + volumen + 
-                    "\nMi Tarjeta de presentación: " + listaTarjetasPresentacion.get(0).toString();
+                "\nVolumen: " + volumen;
+                if(listaTarjetasPresentacion.size()!= 0){
+                    resultado = resultado + "\nMi Tarjeta de presentación: " + listaTarjetasPresentacion.get(0).toString();
+                }
                 break;
         
             default:
                 break;
         }
         
+        return resultado;
+    }
+
+    @Override
+    public boolean verificar(int numero) {
+        // TODO Auto-generated method stub
+        boolean resultado = false;
+        switch(numero){
+            case 1:
+                if (listaEmisoras.size() != 0){
+                    resultado = true;
+                }
+                else{
+                    resultado = false;
+                }
+                break;
+            
+            case 2:
+                if (listaListasReproduccion.size() != 0){
+                resultado = true;
+            }
+            else{
+                resultado = false;
+            }
+            break;
+                
+        }
         return resultado;
     }
     
