@@ -24,7 +24,7 @@ public class Principal{
         
         boolean continuar = true;
 
-        String menu = "\n======== RADIO ========\n1. Cambiar volumen\n2. Modo Radio\n3. Modo Reproducción\n4. Modo Teléfono\n5. Modo Productividad\n6.Apagar radio";
+        String menu = "\n======== RADIO ========\n1. Cambiar volumen\n2. Modo Radio\n3. Modo Reproducción\n4. Modo Teléfono\n5. Modo Productividad\n6. Apagar radio";
         
         while(modo >=0 && modo < 6){
             try{
@@ -221,7 +221,7 @@ public class Principal{
                                                 }
                                             }
                                             else{
-                                                System.out.println(radio.desplegarListas(""));
+                                                System.out.println(radio.desplegarCanciones());
                                             }
                                             break;
     
@@ -294,7 +294,6 @@ public class Principal{
                                                     // TODO: handle exception
                                                     System.out.println("\nEscoja una opción válida.");
                                                 }
-                                                System.out.println(radio.desplegarContactos("")); 
                                             }
                                             else{
                                                 System.out.println(radio.desplegarListas(""));

@@ -40,7 +40,7 @@ public class Radio implements InterfaceB{
         encendido = false;
         listaEmisoras = new ArrayList<Float>();
         cancionActual = new Cancion();
-        ultimoContacto = new Contacto();
+        ultimoContacto = null;
         listaReproduccionActual = new ArrayList <Cancion>();
         telefonoConectado = false;
     }
@@ -215,7 +215,7 @@ public class Radio implements InterfaceB{
         else{
             resultado = resultado + "\nNo hay ningún teléfono conectado. Por favor conéctalo en el modo 'Teléfono'.";
         }
-        return resultado + "\n" + this.toString();
+        return resultado;
     }
 
     
@@ -289,8 +289,16 @@ public class Radio implements InterfaceB{
 
         switch(subirBajar){
             case 1:{
-                this.cancionActual = listaReproduccionActual.get(indice+1);
-                resultado = resultado + "Se ha cambiado de canción.";
+                
+                if (indice == 4){
+                    indice = 0;
+                    this.cancionActual = listaReproduccionActual.get(indice);
+                    resultado = resultado + "Se ha cambiado de canción.";
+                }
+                else{
+                    this.cancionActual = listaReproduccionActual.get(indice+1);
+                    resultado = resultado + "Se ha cambiado de canción.";
+                }
                 break;
             }
             case 2:{
@@ -298,13 +306,7 @@ public class Radio implements InterfaceB{
                     this.cancionActual = listaReproduccionActual.get(indice-1);
                     resultado = resultado + "Se ha cambiado de canción.";
                 }
-                
-                else if (indice == 5){
-                    indice = 1;
-                    this.cancionActual = listaReproduccionActual.get(indice);
-                    resultado = resultado + "Se ha cambiado de canción.";
-                }
-                
+            
                 else{
                     resultado = resultado + "No es posible regresar a la canción anterior porque esta es la primera canción de la lista de reproducción.";
                 }
@@ -526,26 +528,21 @@ public class Radio implements InterfaceB{
         // TODO Auto-generated method stub
         String resultado = "";
 
-        if(telefonoConectado == false){
-            resultado = "\nNo hay ningún teléfono conectado. No se puede realizar una llamada.";
-        }
+        Contacto contactoActual = listaContactos.get(contacto);
+        switch (opcion) {
+            case 1://llamar
+                resultado = "\nLlamando a " + contactoActual.getTelefono() + " (" + contactoActual.getNombre() + ")" + "...";
+                ultimoContacto = contactoActual;
+                break;
 
-        else{
-            Contacto contactoActual = listaContactos.get(contacto);
-            switch (opcion) {
-                case 1://llamar
-                    resultado = "\nLlamando a " + contactoActual.getTelefono() + " (" + contactoActual.getNombre() + ")" + "...";
-                    ultimoContacto = contactoActual;
-                    break;
-
-                case 2://colgar
-                    resultado = "\nSe ha colgado la llamada con " + contactoActual.getTelefono() + " (" + contactoActual.getNombre() + ")" + "...";
-                    break;
-            
-                default:
-                    break;
-            }
+            case 2://colgar
+                resultado = "\nSe ha colgado la llamada con " + contactoActual.getTelefono() + " (" + contactoActual.getNombre() + ")" + "...";
+                break;
+        
+            default:
+                break;
         }
+        
         return resultado + "\n" + this.toString();
     }
 
@@ -566,11 +563,11 @@ public class Radio implements InterfaceB{
             int i = 1;
             resultado = "\n--- TARJETAS DE PRESENTACIÓN ---\n";
             for (TarjetaPresentacion tarjeta : listaTarjetasPresentacion) {
-                resultado = resultado + i + ". " + tarjeta.toString();
+                resultado = resultado + i + ". " + tarjeta.toString() + "\n";
                 i++;
             }
         }
-        return resultado + "\n" + this.toString();
+        return resultado + this.toString();
     }
 
     
@@ -580,7 +577,7 @@ public class Radio implements InterfaceB{
      */
     @Override
     public String toString(){
-        String resultado = "\n--------- RADIO ---------\n";
+        String resultado = "\n--------- RADIO ---------";
         
         switch (modo) {
             case 1:
@@ -598,9 +595,10 @@ public class Radio implements InterfaceB{
                 break;
 
             case 3:
-                resultado = resultado  + "\nMODO TELÉFONO" + 
-                    "\nVolumen: " + volumen +
-                    "\nÚltimo contacto con el que se habló: " + ultimoContacto.getNombre() + " (" + ultimoContacto.getTelefono() + ")";
+                resultado = resultado  + "\nMODO TELÉFONO" + "\nVolumen: " + volumen;
+                if (ultimoContacto != null){
+                    resultado = resultado + "\nÚltimo contacto con el que se habló: " + ultimoContacto.getNombre() + " (" + ultimoContacto.getTelefono() + ")";
+                }
                 break;
 
             case 4:
@@ -650,7 +648,7 @@ public class Radio implements InterfaceB{
                     resultado = false;
                 }
                 break;
-
+            
             default:
                 break;
                 
