@@ -65,6 +65,8 @@ public class Principal{
                                         }
                                     }
                                 }
+
+                                System.out.println(radio.cambiarVolumen(subirBajar));
                                 break;
         
                             case 2: //Modo Radio
@@ -170,45 +172,56 @@ public class Principal{
                                             break;
     
                                         case 2: //Cambiar Canción
-                                            System.out.println("\n1. Subir de canción\n2. Bajar de canción\nEscoja una opción: ");
-                                            int subirBajarCancion = teclado.nextInt();
-                                            teclado.nextLine();
-    
-                                            if(subirBajarCancion != 1 && subirBajarCancion != 2){
-                                                System.out.println("Ingrese un número válido.");
-    
-                                                boolean entradaIncorrectaSubirBajar = true;
-                                                while(entradaIncorrectaSubirBajar){
-    
-                                                    System.out.println("\n1. Subir de canción\n2. Bajar de canción\nEscoja una opción: ");
-                                                    subirBajarCancion = teclado.nextInt();
-                                                    teclado.nextLine();
-    
-                                                    if(subirBajarCancion == 1 || subirBajarCancion == 2){
-                                                        entradaIncorrectaSubirBajar = false;
-                                                    }
-                                                    else{
-                                                        System.out.println("Ingrese un número válido.");
+                                            
+                                            if(radio.verificar(2) && radio.verificar(3)){
+                                                System.out.println("\n1. Subir de canción\n2. Bajar de canción\nEscoja una opción: ");
+                                                int subirBajarCancion = teclado.nextInt();
+                                                teclado.nextLine();
+        
+                                                if(subirBajarCancion != 1 && subirBajarCancion != 2){
+                                                    System.out.println("Ingrese un número válido.");
+        
+                                                    boolean entradaIncorrectaSubirBajar = true;
+                                                    while(entradaIncorrectaSubirBajar){
+        
+                                                        System.out.println("\n1. Subir de canción\n2. Bajar de canción\nEscoja una opción: ");
+                                                        subirBajarCancion = teclado.nextInt();
+                                                        teclado.nextLine();
+        
+                                                        if(subirBajarCancion == 1 || subirBajarCancion == 2){
+                                                            entradaIncorrectaSubirBajar = false;
+                                                        }
+                                                        else{
+                                                            System.out.println("Ingrese un número válido.");
+                                                        }
                                                     }
                                                 }
+        
+                                                System.out.println(radio.cambiarCancion(subirBajarCancion));
                                             }
-    
-                                            System.out.println(radio.cambiarCancion(subirBajarCancion));
+                                            else{
+                                                System.out.println("No hay teléfono conectado o no ha escogido aún una lista de reproducción.");
+                                            }
                                             break;
     
                                         case 3://Escuchar canción
                                             
-                                            System.out.println(radio.desplegarCanciones());
-                                            
-                                            try {
-                                                System.out.println("\nEscoja una opción: ");
-                                                int opcionCancion = teclado.nextInt();
-                                                teclado.nextLine();
-                                                System.out.println(radio.escucharCancion(opcionCancion));
-    
-                                            } catch (Exception e) {
-                                                // TODO: handle exception
-                                                System.out.println("Escoja un número válido.");
+                                            if(radio.verificar(2) && radio.verificar(3)){
+                                                System.out.println(radio.desplegarCanciones());
+                                                
+                                                try {
+                                                    System.out.println("\nEscoja una opción: ");
+                                                    int opcionCancion = teclado.nextInt();
+                                                    teclado.nextLine();
+                                                    System.out.println(radio.escucharCancion(opcionCancion));
+        
+                                                } catch (Exception e) {
+                                                    // TODO: handle exception
+                                                    System.out.println("Escoja un número válido.");
+                                                }
+                                            }
+                                            else{
+                                                System.out.println(radio.desplegarListas(""));
                                             }
                                             break;
     
@@ -228,7 +241,7 @@ public class Principal{
                                 modo = 3;
                                 while(modo ==3){
                                     
-                                    System.out.println("\n--- MODO TELÉFONO ---\n1. Conectar o desconectar un teléfono");
+                                    System.out.println("\n--- MODO TELÉFONO ---\n1. Conectar o desconectar un teléfono\n2. Mostrar contactos\n3. Llamar a contacto \n4. Finalizar Llamada\n5. Llamar al último contacto con el que se habló\n6. Cambiar de modo\nEscoja una opción: ");
                                     int opcionTelefono = teclado.nextInt();
     
                                     switch (opcionTelefono) {
@@ -236,6 +249,7 @@ public class Principal{
     
                                             if (conectado){
                                                 System.out.println(radio.desconectar());
+                                                conectado = false;
                                             }
     
                                             else{
@@ -245,6 +259,7 @@ public class Principal{
         
                                                 try {
                                                     System.out.println(radio.conectar(telefonoEscoger));
+                                                    conectado = true;
         
                                                 } catch (Exception e) {
                                                     // TODO: handle exception
@@ -257,21 +272,32 @@ public class Principal{
                                             break;
     
                                         case 2: //mostrar contactos
-                                            System.out.println(radio.desplegarContactos(""));
+                                            if(radio.verificar(2)){
+                                                System.out.println(radio.desplegarContactos(""));
+                                            }
+                                            else{
+                                                System.out.println(radio.desplegarListas(""));
+                                            }
                                             break;
     
                                         case 3://llamar a contacto
-                                            System.out.println(radio.desplegarContactos("")); 
                                             
-                                            try {
-                                                System.out.println("\nEscoja una opción: ");
-                                                opcionContacto = teclado.nextInt();
-                                                System.out.println(radio.llamarColgar(1, opcionContacto));
-                                                finalizado = false;
-    
-                                            } catch (Exception e) {
-                                                // TODO: handle exception
-                                                System.out.println("\nEscoja una opción válida.");
+                                            if(radio.verificar(2)){
+                                                try {
+                                                    System.out.println(radio.desplegarContactos(""));
+                                                    System.out.println("\nEscoja una opción: ");
+                                                    opcionContacto = teclado.nextInt();
+                                                    System.out.println(radio.llamarColgar(1, opcionContacto));
+                                                    finalizado = false;
+        
+                                                } catch (Exception e) {
+                                                    // TODO: handle exception
+                                                    System.out.println("\nEscoja una opción válida.");
+                                                }
+                                                System.out.println(radio.desplegarContactos("")); 
+                                            }
+                                            else{
+                                                System.out.println(radio.desplegarListas(""));
                                             }
                                             break;
     
@@ -287,7 +313,6 @@ public class Principal{
     
                                         case 5: //llamar al último contacto con el que se habló
                                             System.out.println(radio.llamarColgar(1, opcionContacto));
-                                            
                                             break;
     
                                         case 6://Cambiar de modo

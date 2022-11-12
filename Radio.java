@@ -281,6 +281,7 @@ public class Radio implements InterfaceB{
         for (int i = 0; i < listaReproduccionActual.size(); i++){
             Cancion actual = listaReproduccionActual.get(i);
             String nombreActual = actual.getNombre();
+            
             if (nombreActual.equalsIgnoreCase(this.cancionActual.getNombre())){
                 indice = i;
             }
@@ -293,10 +294,17 @@ public class Radio implements InterfaceB{
                 break;
             }
             case 2:{
-                if (indice != 0){
+                if (indice != 0 && indice < 5){
                     this.cancionActual = listaReproduccionActual.get(indice-1);
                     resultado = resultado + "Se ha cambiado de canción.";
                 }
+                
+                else if (indice == 5){
+                    indice = 1;
+                    this.cancionActual = listaReproduccionActual.get(indice);
+                    resultado = resultado + "Se ha cambiado de canción.";
+                }
+                
                 else{
                     resultado = resultado + "No es posible regresar a la canción anterior porque esta es la primera canción de la lista de reproducción.";
                 }
@@ -408,7 +416,7 @@ public class Radio implements InterfaceB{
         }
         listaListasReproduccion.add(playList2);
         
-        telefonoConectado = true;
+        this.telefonoConectado = true;
         String resultado = "\nSe ha conectado el teléfono.";
         return resultado;
     }
@@ -458,7 +466,7 @@ public class Radio implements InterfaceB{
             }
         }
 
-        return resultado + "\n" + this.toString();
+        return this.toString()+ "\n"+ resultado;
     }
 
     
@@ -475,10 +483,10 @@ public class Radio implements InterfaceB{
             resultado = "\nNo hay ningún teléfono conectado. No se pueden mostrar contactos.";
         }
         else{
-            int i = 0;
+            int i = 1;
             resultado = "\n--- CONTACTOS ---\n";
             for (Contacto contacto : listaContactos) {
-                resultado = resultado + i + ". " + contacto.getNombre() + ": " + contacto.getTelefono();
+                resultado = resultado + i + ". " + contacto.getNombre() + ": " + contacto.getTelefono() + "\n";
                 i++;
             }
         }
@@ -521,6 +529,7 @@ public class Radio implements InterfaceB{
         if(telefonoConectado == false){
             resultado = "\nNo hay ningún teléfono conectado. No se puede realizar una llamada.";
         }
+
         else{
             Contacto contactoActual = listaContactos.get(contacto);
             switch (opcion) {
@@ -571,7 +580,7 @@ public class Radio implements InterfaceB{
      */
     @Override
     public String toString(){
-        String resultado = "\n--------- RADIO ---------";
+        String resultado = "\n--------- RADIO ---------\n";
         
         switch (modo) {
             case 1:
@@ -585,20 +594,20 @@ public class Radio implements InterfaceB{
             case 2:
                 resultado = resultado  + "\nMODO REPRODUCCIÓN" + 
                     "\nVolumen: " + volumen + 
-                    "\nCanción que se está reproduciendo: " + "\n" + cancionActual.toString();
+                    "\n\nCanción que se está reproduciendo: " + "\n" + cancionActual.toString();
                 break;
 
             case 3:
                 resultado = resultado  + "\nMODO TELÉFONO" + 
                     "\nVolumen: " + volumen +
-                    "\nÚltimo contacto con el que se habló: " + ultimoContacto;
+                    "\nÚltimo contacto con el que se habló: " + ultimoContacto.getNombre() + " (" + ultimoContacto.getTelefono() + ")";
                 break;
 
             case 4:
                 resultado = resultado  + "\nMODO PRODUCTIVIDAD" + 
                 "\nVolumen: " + volumen;
                 if(listaTarjetasPresentacion.size()!= 0){
-                    resultado = resultado + "\nMi Tarjeta de presentación: " + listaTarjetasPresentacion.get(0).toString();
+                    resultado = resultado + "\n\nMi Tarjeta de presentación: " + listaTarjetasPresentacion.get(0).toString();
                 }
                 break;
         
@@ -625,12 +634,25 @@ public class Radio implements InterfaceB{
             
             case 2:
                 if (listaListasReproduccion.size() != 0){
-                resultado = true;
-            }
-            else{
-                resultado = false;
-            }
-            break;
+                    resultado = true;
+                }
+            
+                else{
+                    resultado = false;
+                }
+                break;
+
+            case 3:
+                if(listaReproduccionActual.size() != 0){
+                    resultado = true;
+                }
+                else{
+                    resultado = false;
+                }
+                break;
+
+            default:
+                break;
                 
         }
         return resultado;
