@@ -563,7 +563,7 @@ public class Radio implements InterfaceB{
             resultado = "\nNo hay ningún teléfono conectado. No se pueden mostrar las tarjetas de presentación.";
         }
         else{
-            int i = 0;
+            int i = 1;
             resultado = "\n--- TARJETAS DE PRESENTACIÓN ---\n";
             for (TarjetaPresentacion tarjeta : listaTarjetasPresentacion) {
                 resultado = resultado + i + ". " + tarjeta.toString();
